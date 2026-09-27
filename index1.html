@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chúc Mừng Sinh Nhật Em TÝ ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            color: #4a4a4a;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 420px;
+            min-height: 90vh;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(15px);
+            border-radius: 24px;
+            padding: 20px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* SCREEN 1: PASSCODE */
+        #screen-passcode {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .avatar-box {
+            width: 110px;
+            height: 110px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 3px solid #fff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            margin-bottom: 15px;
+        }
+
+        .avatar-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .passcode-title {
+            font-size: 14px;
+            color: #d81b60;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .dots-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 2px solid #ff4081;
+            transition: all 0.2s;
+        }
+
+        .dot.active {
+            background-color: #ff4081;
+            box-shadow: 0 0 8px #ff4081;
+        }
+
+        .keypad {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            width: 80%;
+        }
+
+        .btn-key {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.7);
+            border: none;
+            font-size: 20px;
+            font-weight: bold;
+            color: #d81b60;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            cursor: pointer;
+            justify-self: center;
+            transition: transform 0.1s, background 0.2s;
+        }
+
+        .btn-key:active {
+            transform: scale(0.92);
+            background: #ff4081;
+            color: #fff;
+        }
+
+        /* SCREEN 2: STORY & CAKE */
+        #screen-story {
+            display: none;
+            width: 100%;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .typing-text {
+            font-size: 18px;
+            color: #8e24aa;
+            margin: 15px 0;
+            font-weight: 600;
+            min-height: 50px;
+        }
+
+        .cake-box {
+            font-size: 80px;
+            margin: 20px 0;
+            animation: floatCake 2s infinite ease-in-out;
+        }
+
+        @keyframes floatCake {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* SCREEN 3: LETTER CARD */
+        #screen-letter {
+            display: none;
+            width: 100%;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .letter-card {
+            background: rgba(255, 255, 255, 0.85);
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px solid #f8bbd0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            text-align: left;
+            width: 100%;
+        }
+
+        .letter-title {
+            font-family: 'Georgia', serif;
+            font-style: italic;
+            color: #c2185b;
+            font-size: 18px;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+
+        .letter-content {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #424242;
+            margin-bottom: 12px;
+        }
+
+        .letter-img {
+            width: 100%;
+            height: 180px;
+            border-radius: 12px;
+            object-fit: cover;
+            margin-bottom: 12px;
+        }
+
+        .btn-next {
+            margin-top: 15px;
+            padding: 10px 24px;
+            border-radius: 20px;
+            background: linear-gradient(45deg, #ff4081, #ff80ab);
+            color: white;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(255, 64, 129, 0.3);
+        }
+
+        /* SCREEN 4: PHOTO WALL */
+        #screen-gallery {
+            display: none;
+            width: 100%;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .polaroid {
+            background: white;
+            padding: 8px 8px 20px 8px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            transform: rotate(-3deg);
+            transition: transform 0.3s;
+        }
+
+        .polaroid:nth-child(even) {
+            transform: rotate(3deg);
+        }
+
+        .polaroid img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .polaroid p {
+            font-size: 11px;
+            text-align: center;
+            margin-top: 6px;
+            color: #d81b60;
+            font-weight: 600;
+        }
+
+        /* Floating Hearts */
+        .heart {
+            position: absolute;
+            color: #ff4081;
+            font-size: 18px;
+            pointer-events: none;
+            animation: rise 3s linear infinite;
+        }
+
+        @keyframes rise {
+            0% { transform: translateY(100vh) scale(0.5); opacity: 1; }
+            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- MÀN HÌNH 1: MẬT KHẨU (6 CHỮ SỐ) -->
+    <div id="screen-passcode">
+        <div class="avatar-box">
+            <img src="emgai1.png" alt="Princess">
+        </div>
+        <div class="passcode-title">Hãy nhập ngày sinh của công chúa (6 số)</div>
+        <div class="dots-container">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+        <div class="keypad">
+            <button class="btn-key" onclick="pressKey('1')">1</button>
+            <button class="btn-key" onclick="pressKey('2')">2</button>
+            <button class="btn-key" onclick="pressKey('3')">3</button>
+            <button class="btn-key" onclick="pressKey('4')">4</button>
+            <button class="btn-key" onclick="pressKey('5')">5</button>
+            <button class="btn-key" onclick="pressKey('6')">6</button>
+            <button class="btn-key" onclick="pressKey('7')">7</button>
+            <button class="btn-key" onclick="pressKey('8')">8</button>
+            <button class="btn-key" onclick="pressKey('9')">9</button>
+            <button class="btn-key" onclick="clearKey()">C</button>
+            <button class="btn-key" onclick="pressKey('0')">0</button>
+            <button class="btn-key" onclick="submitPass()">OK</button>
+        </div>
+    </div>
+
+    <!-- MÀN HÌNH 2: BÁNH SINH NHẬT -->
+    <div id="screen-story">
+        <div id="text-story" class="typing-text"></div>
+        <div class="cake-box">🎂</div>
+        <button class="btn-next" onclick="showLetter()">Mở quà em ra nào BABY</button>
+    </div>
+
+    <!-- MÀN HÌNH 3: BỨC THƯ LỜI CHÚC -->
+    <div id="screen-letter">
+        <div class="letter-card">
+            <div class="letter-title">Gửi Em TÝ,</div>
+            <img src="emgai2.png" class="letter-img" alt="Em yêu">
+            <div class="letter-content">
+                Chúc em Tý của anh luôn vui vẻ, xinh xắn và thật hạnh phúc nhé! 🌷<br><br>
+                Mong rằng mỗi ngày của em đều có thật nhiều niềm vui, gặp được những người yêu thương và luôn đủ mạnh mẽ để vượt qua mọi khó khăn.<br><br>
+                Chúc em luôn giữ được nụ cười trên môi, sống theo điều mình thích và trở thành phiên bản hạnh phúc nhất của chính mình. ❤️
+            </div>
+        </div>
+        <button class="btn-next" onclick="showGallery()">Xem kỷ niệm </button>
+    </div>
+
+    <!-- MÀN HÌNH 4: ALBUM ẢNH -->
+    <div id="screen-gallery">
+        <h3 style="color: #d81b60; margin-bottom: 10px;">Chúc Mừng Sinh Nhật Rực Rỡ 🎉</h3>
+        <div class="photo-grid">
+            <div class="polaroid">
+                <img src="emgai3.png" alt="Photo 1">
+                <p>Xinh đẹp nhất ✨</p>
+            </div>
+            <div class="polaroid">
+                <img src="emgai4.png" alt="Photo 2">
+                <p>Luôn nụ cười trên môi ❤️</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let inputPass = "";
+    const CORRECT_PASS = "270928"; // Mật khẩu đặt tại đây
+
+    function pressKey(num) {
+        if (inputPass.length < 6) {
+            inputPass += num;
+            updateDots();
+        }
+        if (inputPass.length === 6) {
+            setTimeout(submitPass, 200);
+        }
+    }
+
+    function clearKey() {
+        inputPass = "";
+        updateDots();
+    }
+
+    function updateDots() {
+        const dots = document.querySelectorAll('.dot');
+        dots.forEach((dot, index) => {
+            if (index < inputPass.length) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
+            }
+        });
+    }
+
+    function submitPass() {
+        if (inputPass === CORRECT_PASS) {
+            document.getElementById('screen-passcode').style.display = 'none';
+            document.getElementById('screen-story').style.display = 'flex';
+            startStory();
+        } else {
+            alert("Mật khẩu không đúng rồi nè! Thử lại nha ❤️");
+            clearKey();
+        }
+    }
+
+    function startStory() {
+        const textElement = document.getElementById('text-story');
+        const messages = [
+            "Hôm nay là sinh nhật của em...",
+            "Anh có một món quà nhỏ dành cho em "];
+        let msgIndex = 0;
+
+        function typeMessage() {
+            if (msgIndex < messages.length) {
+                textElement.innerText = messages[msgIndex];
+                msgIndex++;
+                setTimeout(typeMessage, 2000);
+            }
+        }
+        typeMessage();
+        createHearts();
+    }
+
+    function showLetter() {
+        document.getElementById('screen-story').style.display = 'none';
+        document.getElementById('screen-letter').style.display = 'flex';
+    }
+
+    function showGallery() {
+        document.getElementById('screen-letter').style.display = 'none';
+        document.getElementById('screen-gallery').style.display = 'flex';
+    }
+
+    function createHearts() {
+        setInterval(() => {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerText = '🌸';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 4000);
+        }, 400);
+    }
+</script>
+</body>
+</html>
